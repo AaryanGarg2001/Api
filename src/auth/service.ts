@@ -16,3 +16,15 @@ export async function findUserByEmail(email:string) {
 export async function findUserByUsername(username:string) {
     return await userModel.findOne({username})
 }
+
+export async function isUsernameExist(username:string) {
+    return await userModel.exists({username})
+}
+
+export async function isEmailExist(email:string) {
+    return await userModel.exists({email})
+}
+
+export async function comparePassword(userPassword:string, password:string) {
+    return await bcrypt.compareSync(userPassword,password);
+}

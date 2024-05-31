@@ -1,5 +1,6 @@
 import fastify, { FastifyInstance } from "fastify";
 import { logger } from "./logger";
+import { registerRoutes } from "../auth/route";
 
 export async function buildServer() {
 
@@ -9,7 +10,7 @@ export async function buildServer() {
 
 
     
-
+    app.register(registerRoutes);
 
 
     return app;
