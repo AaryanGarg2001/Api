@@ -2,8 +2,14 @@ import bcrypt from "bcrypt"
 import { userModel } from "../db/users/models/user";
 
 export async function createUser(data:any) {
-    data.password = bcrypt.hash(data.password,14);
-    return await userModel.create(data)
+    const hashedPassword=await bcrypt.hash(data.password,14);
+    const user={
+        username:data.username,
+        email:data.email,
+        password:hashedPassword
+    }
+    
+    return await userModel.create(user)
 }
 
 export async function findUserById(userId:string) {
